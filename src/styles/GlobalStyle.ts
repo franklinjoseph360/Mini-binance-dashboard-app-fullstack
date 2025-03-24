@@ -50,12 +50,13 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'TeXGyreAdventor', sans-serif;
-        background-color: #1a1a1a;
+        background-color: #202630;
         color: #e0e0e0;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        margin: 10px;
     }
 
     a {
