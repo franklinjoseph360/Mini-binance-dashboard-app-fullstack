@@ -19,37 +19,37 @@ const GlobalStyle = createGlobalStyle`
     }
 
      @font-face {
-        font-family: 'TeXGyreAdventor-Regular';
+        font-family: 'TeXGyreAdventor';
+        font-weight: 400;
         font-style: normal;
-        font-weight: normal;
         src: url(${TeXGyreAdventorRegular}) format('woff');
     }
     
     @font-face {
-        font-family: 'TeXGyreAdventor-Italic';
-        font-style: normal;
-        font-weight: normal;
+        font-family: 'TeXGyreAdventor';
+        font-weight: 400;
+        font-style: italic;
         src: url(${TexgyreadventorItalic}) format('woff');
     }
     
 
     @font-face {
-        font-family: 'TeXGyreAdventor-Bold';
+        font-family: 'TeXGyreAdventor';
+        font-weight: 700;
         font-style: normal;
-        font-weight: normal;
         src: url(${TeXGyreAdventorBold}) format('woff');
     }
     
 
     @font-face {
-        font-family: 'TeXGyreAdventor-BoldItalic';
-        font-style: normal;
-        font-weight: normal;
+        font-family: 'TeXGyreAdventor';
+        font-weight: 700;
+        font-style: italic;
         src: url(${TexgyreadventorBoldItalic}) format('woff');
     }
 
     body {
-        font-family: 'TeXGyreAdventor-Regular';
+        font-family: 'TeXGyreAdventor', sans-serif;
         background-color: #1a1a1a;
         color: #e0e0e0;
         display: flex;
