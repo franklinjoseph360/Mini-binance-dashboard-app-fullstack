@@ -5,7 +5,6 @@ const App = (): React.ReactElement => {
   return (
     <>
       <GlobalStyle />
-      <h1> Franklin - Flowdesk Assessment</h1>
       <LandingPage />
     </>
   )
