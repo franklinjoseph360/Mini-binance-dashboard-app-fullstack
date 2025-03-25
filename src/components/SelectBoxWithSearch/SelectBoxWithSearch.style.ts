@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors, spacing } from '@styles/variables';
 
 export const SearchBoxWrapper = styled.div`
   position: relative;
@@ -6,14 +7,13 @@ export const SearchBoxWrapper = styled.div`
   font-family: 'TeXGyreAdventor', sans-serif;
 
   @media (max-width: 1024px) {
-    max-width: 320px;
+    max-width: ${spacing.sm};
   }
 
   @media (max-width: 600px) {
-    max-width: 100%;
+    max-width: ${spacing.md};
   }
 `;
-
 
 export const Dropdown = styled.ul`
   position: absolute;
@@ -22,7 +22,7 @@ export const Dropdown = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-  background: #181A20;
+  background: ${colors.background.secondary};
   border: none;
   max-height: 200px;
   overflow-y: auto;
@@ -35,12 +35,12 @@ export const Dropdown = styled.ul`
 `;
 
 export const DropdownItem = styled.li`
-  padding: 10px;
-  background-color: #181A20;
-  color: #f0f0f0;
+  padding: ${spacing.md};
+  background-color: ${colors.background.secondary};
+  color: ${colors.font.primary};
   cursor: pointer;
 
   &:hover {
-    background: #2B3139;
+    background: ${colors.background.hover};
   }
 `;

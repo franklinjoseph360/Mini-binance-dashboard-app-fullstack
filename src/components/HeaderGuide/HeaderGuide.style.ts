@@ -1,20 +1,21 @@
 import styled from 'styled-components';
+import { colors, fontSize, fontWeight, spacing } from '@styles/variables';
 
 export const HeaderWrapper = styled.div`
   width: 100%;
-  padding: 16px;
-  background-color: #181a20;
+  padding: ${spacing.lg};
+  background-color: ${colors.background.secondary};
   border-radius: 8px;
-  color: #f0f0f0;
+  color: ${colors.font.primary};
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: ${spacing.lg};
 `;
 
 export const HeaderTop = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: ${spacing.md};
   flex-wrap: wrap;
 `;
 
@@ -27,7 +28,7 @@ export const StarIcon = styled.div`
   align-items: center;
   justify-content: center;
   color: #888888;
-  font-size: 16px;
+  font-size: ${fontSize.base};
   cursor: pointer;
 `;
 
@@ -37,40 +38,40 @@ export const PairInfo = styled.div`
 `;
 
 export const PairName = styled.h1`
-  font-size: 20px;
-  font-weight: 500;
+  font-size: ${fontSize.lg};
+  font-weight: ${fontWeight.medium};
   margin: 0;
 `;
 
 export const PairSub = styled.a`
-  font-size: 12px;
+  font-size: ${fontSize.sm};
   color: #999999;
   text-decoration: none;
 
   svg {
-    font-size: 10px;
+    font-size: ${fontSize.xs};
     vertical-align: middle;
-    margin-left: 4px;
+    margin-left: ${spacing.xs};
   }
 `;
 
 export const PriceInfo = styled.div`
-  color: #2ebd85;
-  font-weight: bold;
-  font-size: 20px;
+  color: ${colors.status.success};
+  font-weight: ${fontWeight.bold};
+  font-size: ${fontSize.lg};
 
   .subPrice {
     display: block;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: normal;
+    color: ${colors.font.secondary};
+    font-size: ${fontSize.base};
+    font-weight: ${fontWeight.normal};
   }
 `;
 
 export const TickerList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 16px;
+  gap: ${spacing.lg};
 `;
 
 export const TickerItem = styled.div`
@@ -79,16 +80,15 @@ export const TickerItem = styled.div`
 `;
 
 export const TickerLabel = styled.div`
-  font-size: 12px;
+  font-size: ${fontSize.sm};
   color: #aaaaaa;
 `;
 
 export const TickerValue = styled.div.withConfig({
-    shouldForwardProp: (prop) => prop !== 'positive',
-  })<{ positive?: boolean }>`
-    font-size: 14px;
-    color: ${({ positive }) => (positive ? '#2ebd85' : '#f44336')};
-    display: flex;
-    gap: 4px;
-  `;
-  
+  shouldForwardProp: (prop) => prop !== 'positive',
+})<{ positive?: boolean }>`
+  font-size: ${fontSize.base};
+  color: ${({ positive }) => (positive ? colors.status.success : '#f44336')};
+  display: flex;
+  gap: ${spacing.xs};
+`;

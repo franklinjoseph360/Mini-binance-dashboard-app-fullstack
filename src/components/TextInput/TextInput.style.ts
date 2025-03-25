@@ -1,31 +1,31 @@
 import styled from "styled-components";
+import { colors, spacing, fontSize } from '@styles/variables';
 
 export const TextInput = styled.input`
   width: 100%;
-  padding: 10px 72px 10px 12px;
-  font-size: 14px;
+  padding: ${spacing.md};
+  font-size: ${fontSize.md};
   border-radius: 8px;
-  background-color: #181a20;
-  color: #f0f0f0;
-  border: 1px solid #181a20;
+  background-color: ${colors.background.highlight};
+  color: ${colors.font.primary};
+  border: 1px solid ${colors.background.highlight};
 
   &:focus {
-    border-color: #2B3139;
+    border-color: ${colors.background.secondary};
     outline: none;
-    background-color: #2B3139;
   }
 
   &::placeholder {
-    color: #777;
+    color: ${colors.font.secondary};
   }
 
   @media (max-width: 600px) {
-    font-size: 13px;
-    padding: 10px 60px 10px 10px;
+    font-size: ${fontSize.xs};
+    padding: ${spacing.md} ${spacing.lg} ${spacing.md} ${spacing.sm};
   }
 
   @media (max-width: 1024px) {
-    font-size: 14px;
-    padding: 10px 64px 10px 12px;
+    font-size: ${fontSize.sm};
+    padding: ${spacing.md} ${spacing.lg} ${spacing.md} ${spacing.sm};
   }
 `;
