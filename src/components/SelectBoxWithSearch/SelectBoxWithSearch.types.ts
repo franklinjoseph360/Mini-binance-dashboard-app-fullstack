@@ -4,7 +4,7 @@ export interface Option {
 }
 
 export interface SelectProps {
-  options: Option[];
+  options: Option[] | null;
   onSelect: (value: Option) => void;
   placeholder?: string;
 }

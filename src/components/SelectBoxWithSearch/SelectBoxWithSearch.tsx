@@ -15,7 +15,8 @@ import { FaMagnifyingGlass, FaRegCircleXmark } from 'react-icons/fa6';
 export const SelectBoxWithSearch: React.FC<SelectProps> = ({ options, onSelect, placeholder }) => {
     const [query, setQuery] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
-    const [selectedIndex, setSelectedIndex] = useState(-1);
+
+    if(!options?.length) return;
 
     const filtered = options.filter(option =>
         option.label.toLowerCase().includes(query.toLowerCase())
@@ -24,13 +25,11 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({ options, onSelect, 
     const handleSelect = (option: Option) => {
         setQuery(option.label);
         setShowDropdown(false);
-        setSelectedIndex(-1);
         onSelect(option);
     };
 
     const handleClear = () => {
         setQuery('');
-        setSelectedIndex(-1);
         setShowDropdown(false);
     };
 
@@ -70,17 +69,16 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({ options, onSelect, 
             {showDropdown && (
                 <Dropdown>
                     {filtered.length > 0 ? (
-                        filtered.map((option, idx) => (
+                        filtered.map((option) => (
                             <DropdownItem
                                 key={option.value}
-                                isSelected={idx === selectedIndex}
                                 onMouseDown={() => handleSelect(option)}
                             >
                                 {option.label}
                             </DropdownItem>
                         ))
                     ) : (
-                        <DropdownItem isSelected={false}>No results found</DropdownItem>
+                        <DropdownItem>No results found</DropdownItem>
                     )}
                 </Dropdown>
             )}
