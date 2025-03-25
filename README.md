@@ -22,11 +22,17 @@ Hi! I'm a software engineer with a passion for building performant, user-friendl
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/binance-trades-app.git
-   cd binance-trades-app
+   git clone https://github.com/franklinjoseph360/flowdesk-binance-ui.git
+   cd flowdesk-binance-ui
 2. **Install Dependencies**
    ```bash
    npm i
 3. **Start the development server**
    ```bash
    npm run dev
+
+---
+
+## Thank You
+
+Thank you for taking the time to review my submission! I look forward to any feedback or the opportunity to discuss it further.
