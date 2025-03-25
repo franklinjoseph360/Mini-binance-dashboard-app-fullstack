@@ -29,6 +29,7 @@ export const useMarketData = (symbol: string | null): UseMarketDataReturn => {
 
                 const [ticker, trades] = await Promise.all([
                     tickerRes.json(),
+
                     tradesRes.json(),
                 ]);
 
@@ -36,8 +37,11 @@ export const useMarketData = (symbol: string | null): UseMarketDataReturn => {
                 setTrades(trades);
             } catch (err: any) {
                 setError(err.message);
-            } finally {
-                setLoading(false);
+            } finally {       
+                const timeoutId = setTimeout(() => {
+                    setLoading(false);
+                }, 2000);
+                return () => clearTimeout(timeoutId);
             }
         };
 

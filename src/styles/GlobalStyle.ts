@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        width: 100%;
     }
 
      @font-face {
@@ -50,13 +51,20 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'TeXGyreAdventor', sans-serif;
-        background-color: #202630;
+        background-color: #0b0c10;
         color: #e0e0e0;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        margin: 10px;
+    }
+
+    .spin {
+        animation: spin 1.2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 
     a {

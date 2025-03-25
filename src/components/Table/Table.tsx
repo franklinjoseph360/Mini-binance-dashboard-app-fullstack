@@ -11,7 +11,7 @@ import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
 
 type SortDirection = 'asc' | 'desc';
 
-export const Table = <T extends Record<string, any>> ({ data, sortableColumns = []}: TableProps<T>): React.ReactElement => {
+export const Table = <T extends Record<string, any>>({ data, sortableColumns = [] }: TableProps<T>): React.ReactElement => {
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: SortDirection;
@@ -92,19 +92,28 @@ export const Table = <T extends Record<string, any>> ({ data, sortableColumns = 
             </TableRow>
           </thead>
           <tbody>
-            {sortedData.map((row, idx) => (
-              <TableRow key={idx}>
-                {headers.map((key) => {
-                  const value = row[key];
-                  const formatted =
-                    typeof value === 'number' && key === 'time'
-                      ? new Date(value).toLocaleString()
-                      : value?.toString();
-                  return <TableCell key={key}>{formatted}</TableCell>;
-                })}
+            {data.length > 0 ? (
+              sortedData.map((row, idx) => (
+                <TableRow key={idx}>
+                  {headers.map((key) => {
+                    const value = row[key];
+                    const formatted =
+                      typeof value === 'number' && key === 'time'
+                        ? new Date(value).toLocaleString()
+                        : value?.toString();
+                    return <TableCell key={key}>{formatted}</TableCell>;
+                  })}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={headers.length} style={{ textAlign: 'center', padding: '2rem' }}>
+                  No Records
+                </TableCell>
               </TableRow>
-            ))}
+            )}
           </tbody>
+
         </StyledTable>
       </TableContainer>
     );

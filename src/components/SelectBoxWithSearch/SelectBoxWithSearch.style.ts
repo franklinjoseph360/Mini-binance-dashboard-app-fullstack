@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const SearchBoxWrapper = styled.div`
   position: relative;
   width: 100%;
-  margin: 10px;
-  max-width: 400px;
   font-family: 'TeXGyreAdventor', sans-serif;
 
   @media (max-width: 1024px) {
@@ -36,9 +34,9 @@ export const Dropdown = styled.ul`
   border-radius: 4px;
 `;
 
-export const DropdownItem = styled.li<{ isSelected: boolean }>`
+export const DropdownItem = styled.li`
   padding: 10px;
-  background: ${({ isSelected }) => (isSelected ? '#2B3139' : '#181A20')};
+  background-color: #181A20;
   color: #f0f0f0;
   cursor: pointer;
 
