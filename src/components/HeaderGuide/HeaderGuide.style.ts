@@ -42,7 +42,7 @@ export const StarIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #888;
+  color: #888888;
   font-size: 16px;
   cursor: pointer;
 `;
@@ -61,7 +61,7 @@ export const PairName = styled.h1`
 
 export const PairSub = styled.a`
   font-size: 12px;
-  color: #999;
+  color: #999999;
   text-decoration: none;
 
   svg {
@@ -74,12 +74,12 @@ export const PairSub = styled.a`
 export const PriceInfo = styled.div`
   display: flex;
   flex-direction: column;
-  color: #ff4d4f;
+  color: #2ebd85;
   font-weight: bold;
   font-size: 20px;
 
   .subPrice {
-    color: #ccc;
+    color: #ffffff;
     font-size: 14px;
     font-weight: normal;
   }
@@ -92,7 +92,7 @@ export const TickerItem = styled.div`
 
 export const TickerLabel = styled.div`
   font-size: 12px;
-  color: #aaa;
+  color: #aaaaaa;
 `;
 
 export const TickerValue = styled.div<{ positive?: boolean }>`
