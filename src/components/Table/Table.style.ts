@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const TableContainer = styled.div`
   width: 100%;
   max-height: 400px;
-  margin: 10px;
   border-radius: 8px;
   overflow-x: auto;
   overflow-y: auto;
@@ -33,7 +32,8 @@ export const TableHeader = styled.th`
   background-color: #181A20;
   font-size: 16px;
   font-weight: bold;
-  padding: 12px 15px;
+  white-space: nowrap;
+  padding: 8px;
   text-align: left;
 `;
 
