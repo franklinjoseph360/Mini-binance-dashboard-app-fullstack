@@ -30,3 +30,9 @@ Hi! I'm a software engineer with a passion for building performant, user-friendl
 3. **Start the development server**
    ```bash
    npm run dev
+
+---
+
+## Thank You
+
+Thank you for taking the time to review my submission! I look forward to any feedback or the opportunity to discuss it further.
