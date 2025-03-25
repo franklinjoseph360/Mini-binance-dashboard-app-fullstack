@@ -32,7 +32,6 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({
         setQuery('');
         setSelectedOption(null);
         setShowDropdown(false);
-        inputRef.current?.focus();
     };
 
     const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {

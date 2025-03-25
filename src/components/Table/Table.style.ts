@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { colors, spacing } from '@styles/variables';
 
 export const TableContainer = styled.div`
   width: 100%;
-  max-height: 400px;
+  max-height: 435px;
   border-radius: 8px;
   overflow-x: auto;
   overflow-y: auto;
@@ -13,7 +14,7 @@ export const TableContainer = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #888;
+    background-color: ${colors.border.scrollbarThumb};
     border-radius: 4px;
   }
 `;
@@ -21,7 +22,7 @@ export const TableContainer = styled.div`
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  background-color: #0B0E11;
+  background-color: ${colors.background.primary};
   border: none;
 `;
 
@@ -29,37 +30,37 @@ export const TableHeader = styled.th`
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #181A20;
+  background-color: ${colors.background.highlight};
   font-size: 16px;
   font-weight: bold;
   white-space: nowrap;
-  padding: 8px;
+  padding: ${spacing.md};
   text-align: left;
 `;
 
 export const TableCell = styled.td`
-  padding: 12px 15px;
+  padding: ${spacing.sm};
   text-align: left;
 `;
 
 export const TableRow = styled.tr`
   &:nth-child(even) {
-    background-color: #181a20;
+    background-color: ${colors.background.secondary};
   }
 
   &:hover {
-    background-color: #2B3139;
+    background-color: ${colors.background.hover};
   }
 `;
 
 export const PositiveChange = styled.td`
   color: #4caf50;
-  padding: 12px 15px;
+  padding: ${spacing.md} ${spacing.lg};
   text-align: left;
 `;
 
 export const NegativeChange = styled.td`
-  color: #f44336;
-  padding: 12px 15px;
+  color: ${colors.font.secondary};
+  padding: ${spacing.md} ${spacing.lg};
   text-align: left;
 `;
