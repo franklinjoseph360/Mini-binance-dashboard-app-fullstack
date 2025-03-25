@@ -1,22 +1,19 @@
-import { TextInput as StyledTextInput } from "./TextInput.style";
-import { TextInputProps } from "./TextInput.types";
+import React from 'react';
+import { TextInputProps } from './TextInput.types';
+import { TextInput as StyledTextInput } from './TextInput.style';
 
-export const TextInput: React.FC<TextInputProps> = ({
-    value,
-    placeholder = 'Enter Currency Pair',
-    onFocus,
-    onChange,
-    onBlur,
-    type="text"
-  }) => (
+export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+  ({ value, placeholder, onFocus, onChange, onBlur, type = 'text' }, ref) => (
     <StyledTextInput
+      ref={ref}
       type={type}
       value={value}
       placeholder={placeholder}
       onFocus={onFocus}
       onChange={onChange}
       onBlur={onBlur}
-      data-testid='text-input-testid'
+      aria-label={placeholder}
+      data-testid="text-input-testid"
     />
-  );
-  
+  )
+);
