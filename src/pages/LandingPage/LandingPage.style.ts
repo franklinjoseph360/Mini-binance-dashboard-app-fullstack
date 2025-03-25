@@ -1,5 +1,14 @@
 import { styled } from "styled-components";
 
+export const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  font-size: 48px;
+  color: gold;
+`;
+
 export const LandingPageWrapper = styled.div`
   position: relative;
   padding: 24px;

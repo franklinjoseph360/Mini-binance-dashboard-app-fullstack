@@ -15,9 +15,7 @@ export const useMarketData = (symbol: string | null): UseMarketDataReturn => {
     const [error, setError] = useState<UseMarketDataReturn['error']>(null);
 
     useEffect(() => {
-        if (!symbol) {
-            symbol = 'BTCUSDT'
-        };
+        if (!symbol) return;
 
         const fetchMarketData = async () => {
             try {
@@ -29,6 +27,7 @@ export const useMarketData = (symbol: string | null): UseMarketDataReturn => {
 
                 const [ticker, trades] = await Promise.all([
                     tickerRes.json(),
+
                     tradesRes.json(),
                 ]);
 
@@ -36,8 +35,11 @@ export const useMarketData = (symbol: string | null): UseMarketDataReturn => {
                 setTrades(trades);
             } catch (err: any) {
                 setError(err.message);
-            } finally {
-                setLoading(false);
+            } finally {       
+                const timeoutId = setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
+                return () => clearTimeout(timeoutId);
             }
         };
 

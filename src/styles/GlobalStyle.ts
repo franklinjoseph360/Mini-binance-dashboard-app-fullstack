@@ -59,6 +59,15 @@ const GlobalStyle = createGlobalStyle`
         margin: 10px;
     }
 
+    .spin {
+        animation: spin 1.2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
     a {
         font-weight: 500;
         color: #646cff;
