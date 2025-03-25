@@ -181,7 +181,7 @@ export const LandingPage = (): React.ReactElement => {
                 ]}
             />
 
-            <TradesTable data={trades} />
+            <TradesTable data={trades}  sortableColumns={['price', 'qty', 'quoteQty', 'time']} />
         </LandingPageWrapper>
     );
 };
