@@ -57,7 +57,7 @@ export const Table = <T extends Record<string, any>>({ data, sortableColumns = [
 
   if (!data || data.length === 0) {
     return (
-      <TableContainer>
+      <TableContainer data-testid='table-container-no-records-testid'>
         <StyledTable>
           <tbody>
             <TableRow>
@@ -69,7 +69,7 @@ export const Table = <T extends Record<string, any>>({ data, sortableColumns = [
     )
   } else {
     return (
-      <TableContainer>
+      <TableContainer data-testid='table-container-testid'>
         <StyledTable>
           <thead>
             <TableRow>

@@ -83,7 +83,12 @@ export const TickerLabel = styled.div`
   color: #aaaaaa;
 `;
 
-export const TickerValue = styled.div<{ positive?: boolean }>`
-  font-size: 14px;
-  color: ${({ positive }) => (positive ? '#2ebd85' : '#f44336')};
-`;
+export const TickerValue = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== 'positive',
+  })<{ positive?: boolean }>`
+    font-size: 14px;
+    color: ${({ positive }) => (positive ? '#2ebd85' : '#f44336')};
+    display: flex;
+    gap: 4px;
+  `;
+  

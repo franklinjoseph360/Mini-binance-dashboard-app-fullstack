@@ -50,7 +50,7 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({
     };
 
     return (
-        <SearchBoxWrapper>
+        <SearchBoxWrapper data-testid='search-box-testid'>
             <FormWrapper onSubmit={handleSearchSubmit}>
                 <>
                     <SelectInput

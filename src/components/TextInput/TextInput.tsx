@@ -16,6 +16,7 @@ export const TextInput: React.FC<TextInputProps> = ({
       onFocus={onFocus}
       onChange={onChange}
       onBlur={onBlur}
+      data-testid='text-input-testid'
     />
   );
   
