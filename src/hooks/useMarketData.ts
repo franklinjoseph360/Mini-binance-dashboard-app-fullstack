@@ -40,7 +40,7 @@ export const useMarketData = (symbol: string | null): UseMarketDataReturn => {
             } finally {       
                 const timeoutId = setTimeout(() => {
                     setLoading(false);
-                }, 2000);
+                }, 1000);
                 return () => clearTimeout(timeoutId);
             }
         };
