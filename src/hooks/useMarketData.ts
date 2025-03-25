@@ -1,40 +1,47 @@
 import { useEffect, useState } from 'react';
-import type { Ticker24hrType as Ticker24hr, TradeType as Trade } from '../types';
+import type { Ticker24hrType, TradeType } from '../types';
 
-export const useMarketData = (symbol: string | null) => {
-  const [trades, setTrades] = useState<Trade[]>([]);
-  const [ticker24hr, setTicker24hr] = useState<Ticker24hr | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+interface UseMarketDataReturn {
+    loading: boolean;
+    error: string | null;
+    trades: TradeType[];
+    ticker24hr: Ticker24hrType | null;
+}
 
-  useEffect(() => {
-    if (!symbol) return;
+export const useMarketData = (symbol: string | null): UseMarketDataReturn => {
+    const [trades, setTrades] = useState<UseMarketDataReturn['trades']>([]);
+    const [ticker24hr, setTicker24hr] = useState<UseMarketDataReturn['ticker24hr']>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<UseMarketDataReturn['error']>(null);
 
-    const fetchMarketData = async () => {
-      try {
-        setLoading(true);
-        const [tickerRes, tradesRes] = await Promise.all([
-          fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${symbol}`),
-          fetch(`https://api.binance.com/api/v3/trades?symbol=${symbol}&limit=10`),
-        ]);
+    useEffect(() => {
+        if (!symbol) return;
 
-        const [ticker, trades] = await Promise.all([
-          tickerRes.json(),
-        
-          tradesRes.json(),
-        ]);
+        const fetchMarketData = async () => {
+            try {
+                setLoading(true);
+                const [tickerRes, tradesRes] = await Promise.all([
+                    fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${symbol}`),
+                    fetch(`https://api.binance.com/api/v3/trades?symbol=${symbol}&limit=10`),
+                ]);
 
-        setTicker24hr(ticker);
-        setTrades(trades);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+                const [ticker, trades] = await Promise.all([
+                    tickerRes.json(),
 
-    fetchMarketData();
-  }, [symbol]);
+                    tradesRes.json(),
+                ]);
 
-  return { trades, ticker24hr, loading, error };
+                setTicker24hr(ticker);
+                setTrades(trades);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMarketData();
+    }, [symbol]);
+
+    return { trades, ticker24hr, loading, error };
 };
