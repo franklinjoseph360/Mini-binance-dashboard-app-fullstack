@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   HeaderWrapper,
-  Left,
-  Right,
+  HeaderTop,
   StarIcon,
   PairInfo,
   PairName,
@@ -11,6 +10,7 @@ import {
   TickerItem,
   TickerLabel,
   TickerValue,
+  TickerList,
 } from './HeaderGuide.style';
 import { FaStar } from 'react-icons/fa';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
@@ -25,7 +25,7 @@ export const HeaderGuide: React.FC<HeaderGuideProps> = ({
 }) => {
   return (
     <HeaderWrapper>
-      <Left>
+      <HeaderTop>
         <StarIcon>
           <FaStar />
         </StarIcon>
@@ -36,25 +36,23 @@ export const HeaderGuide: React.FC<HeaderGuideProps> = ({
             {pair.split('/')[0]} Price <FaArrowUpRightFromSquare />
           </PairSub>
         </PairInfo>
+      </HeaderTop>
 
-        <PriceInfo>
-          {price}
-          <span className="subPrice">${priceUSD}</span>
-        </PriceInfo>
-      </Left>
+      <PriceInfo>
+        {price}
+        <span className="subPrice">${priceUSD}</span>
+      </PriceInfo>
 
-      <Right>
+      <TickerList>
         {tickerData.map((item, index) => (
           <TickerItem key={index}>
             <TickerLabel>{item.label}</TickerLabel>
             <TickerValue positive={item.positive}>
-              {typeof item.value === 'string' || typeof item.value === 'number'
-                ? item.value
-                : item.value}
+              {item.value}
             </TickerValue>
           </TickerItem>
         ))}
-      </Right>
+      </TickerList>
     </HeaderWrapper>
   );
 };

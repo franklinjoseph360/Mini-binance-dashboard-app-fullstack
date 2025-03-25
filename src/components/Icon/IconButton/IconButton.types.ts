@@ -4,4 +4,5 @@ export interface IconButtonProps {
     label: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     className?: string;
+    shouldDisable?: boolean;
 }
