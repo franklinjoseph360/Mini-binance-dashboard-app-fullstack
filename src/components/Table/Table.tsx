@@ -11,15 +11,13 @@ import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
 
 type SortDirection = 'asc' | 'desc';
 
-export const Table: React.FC<TableProps> = ({ data, sortableColumns = [] }) => {
+export const Table = <T extends Record<string, any>> ({ data, sortableColumns = []}: TableProps<T>): React.ReactElement => {
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: SortDirection;
   } | null>(null);
 
-  if (!data || data.length === 0) return <div>No data available</div>;
-
-  const headers = Object.keys(data[0]);
+  const headers = data && data.length > 0 ? Object.keys(data[0]) : [];
 
   const sortedData = React.useMemo(() => {
     if (!sortConfig) return data;
@@ -57,44 +55,58 @@ export const Table: React.FC<TableProps> = ({ data, sortableColumns = [] }) => {
     return sortConfig.direction === 'asc' ? <FaSortUp /> : <FaSortDown />;
   };
 
-  return (
-    <TableContainer>
-      <StyledTable>
-        <thead>
-          <TableRow>
-            {headers.map((header) => (
-              <TableHeader
-                key={header}
-                onClick={() =>
-                  sortableColumns.includes(header) && handleSort(header)
-                }
-                style={{
-                  cursor: sortableColumns.includes(header) ? 'pointer' : 'default',
-                }}
-              >
-                {header}{' '}
-                {sortableColumns.includes(header) && (
-                  <span style={{ marginLeft: 6 }}>{renderSortIcon(header)}</span>
-                )}
-              </TableHeader>
-            ))}
-          </TableRow>
-        </thead>
-        <tbody>
-          {sortedData.map((row, idx) => (
-            <TableRow key={idx}>
-              {headers.map((key) => {
-                const value = row[key];
-                const formatted =
-                  typeof value === 'number' && key === 'time'
-                    ? new Date(value).toLocaleString()
-                    : value?.toString();
-                return <TableCell key={key}>{formatted}</TableCell>;
-              })}
+  if (!data || data.length === 0) {
+    return (
+      <TableContainer>
+        <StyledTable>
+          <tbody>
+            <TableRow>
+              <TableCell>No Records</TableCell>
             </TableRow>
-          ))}
-        </tbody>
-      </StyledTable>
-    </TableContainer>
-  );
+          </tbody>
+        </StyledTable>
+      </TableContainer>
+    )
+  } else {
+    return (
+      <TableContainer>
+        <StyledTable>
+          <thead>
+            <TableRow>
+              {headers.map((header) => (
+                <TableHeader
+                  key={header}
+                  onClick={() =>
+                    sortableColumns.includes(header) && handleSort(header)
+                  }
+                  style={{
+                    cursor: sortableColumns.includes(header) ? 'pointer' : 'default',
+                  }}
+                >
+                  {header}{' '}
+                  {sortableColumns.includes(header) && (
+                    <span style={{ marginLeft: 6 }}>{renderSortIcon(header)}</span>
+                  )}
+                </TableHeader>
+              ))}
+            </TableRow>
+          </thead>
+          <tbody>
+            {sortedData.map((row, idx) => (
+              <TableRow key={idx}>
+                {headers.map((key) => {
+                  const value = row[key];
+                  const formatted =
+                    typeof value === 'number' && key === 'time'
+                      ? new Date(value).toLocaleString()
+                      : value?.toString();
+                  return <TableCell key={key}>{formatted}</TableCell>;
+                })}
+              </TableRow>
+            ))}
+          </tbody>
+        </StyledTable>
+      </TableContainer>
+    );
+  }
 };
