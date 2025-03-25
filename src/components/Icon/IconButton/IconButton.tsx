@@ -1,8 +1,28 @@
 import { IconButton as StyledIconButton } from './IconButton.style';
-import { IconButtonProps } from './IconButton.types';
 
-export const IconButton: React.FC<IconButtonProps> = ({ children, onClick, label, className, type = 'button', shouldDisable = false }) => (
-    <StyledIconButton type={type} className={className} onClick={onClick} aria-label={label} disabled={!!shouldDisable} data-testid="icon-button">
-        {children}
+export const IconButton = ({
+    type,
+    onClick,
+    label,
+    children,
+    disabled,
+    ...props
+  }: {
+    type: 'button' | 'submit';
+    onClick?: () => void;
+    label: string;
+    disabled?: boolean;
+    children: React.ReactNode;
+  }) => (
+    <StyledIconButton
+      type={type}
+      onClick={onClick}
+      aria-label={label}
+      title={label}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
     </StyledIconButton>
-)
+  );
+  

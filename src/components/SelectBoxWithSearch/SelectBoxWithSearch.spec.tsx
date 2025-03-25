@@ -44,7 +44,7 @@ describe('SelectBoxWithSearch', () => {
     const input = screen.getByPlaceholderText('Search');
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'btc' } });
-    const clearBtn = screen.getByLabelText('Clear Input');
+    const clearBtn = screen.getByLabelText('Clear Currency Input');
     fireEvent.click(clearBtn);
     expect(input).toHaveValue('');
   });
