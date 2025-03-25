@@ -8,10 +8,10 @@ import {
     RightColumn,
     CenteredMessage,
     SpinnerIcon,
-} from "./LandingPage.style";
+} from "./TradesList.style";
 import { useExchangeInfo, useFormattedTickerData, useMarketData } from "../../hooks";
 
-export const LandingPage = (): React.ReactElement => {
+export const TradesList = (): React.ReactElement => {
     const [currencyPairSelection, setCurrencyPairSelection] = useState<string | null>(null);
 
     const {
@@ -51,7 +51,6 @@ export const LandingPage = (): React.ReactElement => {
     }
 
     return (
-
         <PageLayout>
             <LeftColumn>
                 <SelectBoxWithSearch

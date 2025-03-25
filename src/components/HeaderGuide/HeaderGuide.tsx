@@ -24,7 +24,7 @@ export const HeaderGuide: React.FC<HeaderGuideProps> = ({
   tickerData,
 }) => {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper data-testid='header-guide-testid'>
       <HeaderTop>
         <StarIcon>
           <FaStar />
@@ -47,7 +47,7 @@ export const HeaderGuide: React.FC<HeaderGuideProps> = ({
         {tickerData.map((item, index) => (
           <TickerItem key={index}>
             <TickerLabel>{item.label}</TickerLabel>
-            <TickerValue positive={item.positive}>
+            <TickerValue positive={item.positive} data-testid="TickerValue">
               {item.value}
             </TickerValue>
           </TickerItem>

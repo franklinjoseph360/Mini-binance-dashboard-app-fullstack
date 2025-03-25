@@ -1,11 +1,11 @@
-import {LandingPage} from './pages/LandingPage';
+import { TradesList } from './pages/TradesList';
 import GlobalStyle from './styles/GlobalStyle';
 
 const App = (): React.ReactElement => {
   return (
     <>
       <GlobalStyle />
-      <LandingPage />
+      <TradesList />
     </>
   )
 }
