@@ -1,4 +1,4 @@
-export interface TableProps {
-    data: Record<string, string | number | boolean | null | undefined>[];
-    sortableColumns?: string[];
+export interface TableProps<T extends Record<string, any>> {
+    data: T[];
+    sortableColumns?: (keyof T)[];
   }
