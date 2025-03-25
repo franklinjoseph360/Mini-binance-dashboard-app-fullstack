@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
     Dropdown,
     DropdownItem,
@@ -20,6 +20,7 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({
     const [query, setQuery] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     if (!options?.length) return null;
 
@@ -31,6 +32,7 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({
         setQuery('');
         setSelectedOption(null);
         setShowDropdown(false);
+        inputRef.current?.focus();
     };
 
     const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,16 +48,20 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({
     const handleOptionMouseDown = (option: Option) => {
         setQuery(option.label);
         setSelectedOption(option);
-        // Do not call onSelect here
+        setTimeout(() => inputRef.current?.focus(), 0);
     };
 
+    const dropdownId = 'currency-options-dropdown';
+
     return (
-        <SearchBoxWrapper data-testid='search-box-testid'>
+        <SearchBoxWrapper data-testid="search-box-testid">
             <FormWrapper onSubmit={handleSearchSubmit}>
                 <>
                     <SelectInput
+                        ref={inputRef}
                         type="text"
                         value={query}
+                        name="currency-search"
                         placeholder={placeholder || 'Select an option'}
                         onFocus={() => setShowDropdown(true)}
                         onChange={(e) => {
@@ -63,15 +69,29 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({
                             setSelectedOption(null);
                         }}
                         onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+                        aria-controls={dropdownId}
+                        aria-expanded={showDropdown}
+                        aria-autocomplete="list"
+                        required
                     />
 
                     <IconWrapper>
                         {query && (
-                            <IconButton type="button" onClick={handleClear} label="Clear Input">
+                            <IconButton
+                                type="button"
+                                onClick={handleClear}
+                                label="Clear Currency Input"
+                                aria-label="Clear Currency Input"
+                            >
                                 <FaRegCircleXmark />
                             </IconButton>
                         )}
-                        <IconButton type="submit" label="Search Currency Pair" shouldDisable={!selectedOption}>
+                        <IconButton
+                            type="submit"
+                            label="Search Currency Pair"
+                            aria-label="Search Currency Pair"
+                            disabled={!selectedOption}
+                        >
                             <FaMagnifyingGlass />
                         </IconButton>
                     </IconWrapper>
@@ -79,12 +99,14 @@ export const SelectBoxWithSearch: React.FC<SelectProps> = ({
             </FormWrapper>
 
             {showDropdown && (
-                <Dropdown>
+                <Dropdown id={dropdownId} role="listbox" aria-label="Currency suggestions">
                     {filtered.length > 0 ? (
                         filtered.map((option) => (
                             <DropdownItem
                                 key={option.value}
                                 onMouseDown={() => handleOptionMouseDown(option)}
+                                role="option"
+                                aria-selected={option.label === selectedOption?.label}
                             >
                                 {option.label}
                             </DropdownItem>
