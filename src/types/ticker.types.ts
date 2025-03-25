@@ -7,4 +7,5 @@ export interface Ticker24hrType {
   volume: string;
   quoteVolume: string;
   lastPrice: string;
+  symbol: string;
 }
